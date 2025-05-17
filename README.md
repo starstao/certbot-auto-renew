@@ -1,5 +1,7 @@
 ## 使用 Let's Encrypt 申请免费泛域名 SSL 证书，并实现自动续期
-仅支持使用腾讯云的DNS实现自动续期，如果要支持其他厂商的DNS，请修改dnspod.sh脚本以适配
+仅支持使用腾讯云的DNS实现自动续期，如果要支持其他厂商的DNS，请修改dnspod.sh脚本以适配  
+只有当前在机器上申请了证书才能在当前机器执行续期操作
+更多Let‘s Encrypt获取免费SSL证书请[查看博客](https://starstao.com/2025/05/use-lets-encrypt-to-get-free-ssl-certificates-and-auto-renew-with-scripts-on-tencent-cloud)
 ### 前置条件
 安装docker  
 `sudo apt install docker-compose-v2`  
