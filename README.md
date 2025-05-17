@@ -21,6 +21,11 @@ https://cloud.tencent.com/product/cli
 ```
    dnspod.env中的secretId填写提示的SecretId  
    SecretKey填写SecretKey  
+   例如  
+```
+   secretId=xxxxxxxxxxx
+   secretKey=xxxxxxxxxxx
+```
 5. 编辑replace_certs_and_reload_service.sh脚本  
 将`rsync -avPL /etc/letsencrypt/live/ /opt/ssl/certs/`  
 中的改为/opt/ssl/certs/
