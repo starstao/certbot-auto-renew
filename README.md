@@ -26,9 +26,19 @@ https://cloud.tencent.com/product/cli
    secretId=xxxxxxxxxxx
    secretKey=xxxxxxxxxxx
 ```
-5. 编辑replace_certs_and_reload_service.sh脚本  
+4. 编辑replace_certs_and_reload_service.sh脚本  
 将`rsync -avPL /etc/letsencrypt/live/ /opt/ssl/certs/`  
 中的改为/opt/ssl/certs/
 你想要存放证书的地址，自动续期完成后，将证书拷贝到/opt/ssl/certs/目录  
 将`cd /opt/nginx/ && docker compose stop && docker compose start`  
 命令替换为你想要重启的服务的命令，我这里是用的nginx，目录在/opt/nginx/,切换过去执行了docker compose stop && docker compose start命令去重启它
+5. chmod +x *.sh, ./force_renew.sh example.com是强制续期命令, ./renew.sh 是自动续期命令，快到期一个月前自动续期否则不会续期
+6. 设置定时任务  
+  `apt install cron`安装crontab  
+  `systemctl status cron`查看服务是否在运行  
+  `crontab -e`编辑crontab添加如下命令  
+```
+# 五个星号分别代表分钟、小时、日、月、周
+0 21 * * 5 /opt/ssl/script/renew.sh
+```
+  每周五晚上九点定时执行
